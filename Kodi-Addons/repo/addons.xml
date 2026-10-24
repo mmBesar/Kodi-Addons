@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.audio.audiobookshelf.sync"
+       name="Audiobookshelf Sync"
+       version="1.1.0"
+       provider-name="mmbesar">
+  <requires>
+    <import addon="xbmc.python" version="3.0.1"/>
+    <import addon="script.module.requests" version="2.31.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>audio</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en_GB">Audiobookshelf podcasts and audiobooks with progress sync and offline files</summary>
+    <description lang="en_GB">Stream and download podcasts and audiobooks from your own Audiobookshelf server.
+
+[B]Sync[/B]: playback progress is sent to the server while you listen, so you can continue on your phone or the web app, and the other way round. Listening to downloaded files offline is queued and merged later (newest progress wins).
+
+[B]Works behind a reverse proxy[/B]: enter a normal https address, no IP and port needed. API key or username/password sign-in, with automatic token refresh.
+
+[B]Offline[/B]: download episodes and books, keep the latest unplayed episodes of chosen podcasts on the device automatically, and clean up played ones.
+
+[B]Podcasts[/B]: latest episodes, continue listening, played markers, search the server, add podcasts and fetch missing episodes (admin account required for server management).</description>
+    <disclaimer lang="en_GB">Unofficial client. Not affiliated with the Audiobookshelf project.</disclaimer>
+    <license>GPL-3.0-or-later</license>
+    <source>https://github.com/mmbesar/Kodi-Addons</source>
+    <website>https://github.com/mmbesar/Kodi-Addons</website>
+    <forum>https://github.com/mmbesar/Kodi-Addons/issues</forum>
+    <assets>
+      <icon>resources/icon.png</icon>
+      <fanart>resources/fanart.jpg</fanart>
+    </assets>
+    <news>1.1.0
+- Fix: covers and audio now load over HTTPS. Kodi's own network stack is bypassed through a small loopback proxy inside the add-on (covers are cached on disk).
+- New: playback speed control (0.8x to 2.0x), remembered per show or book. Opt-in in settings; needs Kodi's video player engine. Speeds above 1.5x need maxtempo raised in advancedsettings.xml (see README).
+- New: Playback speed entry in the main menu.
+
+1.0.0
+- First release.</news>
+  </extension>
+</addon>
+<addon id="repository.mmbesar"
+       name="mmbesar Kodi Repository"
+       version="1.0.0"
+       provider-name="mmbesar">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0"/>
+  </requires>
+  <extension point="xbmc.addon.repository" name="mmbesar Kodi Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en_GB">mmbesar's Kodi add-ons</summary>
+    <description lang="en_GB">Personal repository for add-ons by mmbesar, hosted on GitHub.</description>
+    <license>GPL-3.0-or-later</license>
+    <source>https://github.com/mmbesar/Kodi-Addons</source>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
+</addons>

@@ -1,0 +1,7 @@
+1.1.0
+- Fix: covers and audio now load over HTTPS. Kodi's own network stack is bypassed through a small loopback proxy inside the add-on (covers are cached on disk).
+- New: playback speed control (0.8x to 2.0x), remembered per show or book. Opt-in in settings; needs Kodi's video player engine. Speeds above 1.5x need maxtempo raised in advancedsettings.xml (see README).
+- New: Playback speed entry in the main menu.
+
+1.0.0
+- First release.

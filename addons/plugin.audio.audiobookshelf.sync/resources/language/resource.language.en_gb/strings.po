@@ -67,6 +67,14 @@ msgctxt "#30027"
 msgid "Diagnostics"
 msgstr ""
 
+msgctxt "#30028"
+msgid "Playback speed"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Network"
+msgstr ""
+
 msgctxt "#30030"
 msgid "Server address (for example https://abs.example.com)"
 msgstr ""
@@ -199,6 +207,18 @@ msgctxt "#30066"
 msgid "Sync pending listening now"
 msgstr ""
 
+msgctxt "#30070"
+msgid "Enable playback speed control (uses Kodi's video player engine)"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Default playback speed"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Load streams and artwork through the add-on's local proxy (fixes HTTPS problems)"
+msgstr ""
+
 msgctxt "#30100"
 msgid "Continue listening"
 msgstr ""
@@ -249,6 +269,10 @@ msgstr ""
 
 msgctxt "#30181"
 msgid "Play from the beginning"
+msgstr ""
+
+msgctxt "#30182"
+msgid "Playback speed"
 msgstr ""
 
 msgctxt "#30111"
@@ -477,5 +501,25 @@ msgstr ""
 
 msgctxt "#30179"
 msgid "Updated"
+msgstr ""
+
+msgctxt "#30183"
+msgid "Choose playback speed"
+msgstr ""
+
+msgctxt "#30184"
+msgid "Turn on playback speed control in the add-on settings first"
+msgstr ""
+
+msgctxt "#30185"
+msgid "Kodi capped the speed at %.2fx. Raise maxtempo, see the add-on README"
+msgstr ""
+
+msgctxt "#30186"
+msgid "Playback speed: %.2fx"
+msgstr ""
+
+msgctxt "#30187"
+msgid "Default speed set to %.2fx"
 msgstr ""
 

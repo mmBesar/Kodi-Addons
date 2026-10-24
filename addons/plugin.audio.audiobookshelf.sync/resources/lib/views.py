@@ -149,6 +149,7 @@ def root(ctx):
         entry(utils.t(S.M_SEARCH), action="search"),
         entry(utils.t(S.M_DOWNLOADS), action="downloads"),
         entry(utils.t(S.M_ADD_PODCAST), action="add_podcast"),
+        entry(utils.t(S.M_SPEED), action="speed"),
         entry(utils.t(S.M_SYNC_NOW), action="sync_now"),
         entry(utils.t(S.M_SETTINGS), action="open_settings"),
     ]

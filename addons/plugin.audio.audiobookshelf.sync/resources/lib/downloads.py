@@ -157,7 +157,7 @@ def _save_cover(client, item_id, folder):
     if os.path.exists(dest):
         return dest
     try:
-        resp = client.http.get(client.cover_url(item_id, 600), timeout=(5, 20), verify=client.verify)
+        resp = client.http.get(client.cover_url(item_id, 600, direct=True), timeout=(5, 20), verify=client.verify)
         if resp.status_code == 200 and resp.content:
             with open(dest, "wb") as fh:
                 fh.write(resp.content)

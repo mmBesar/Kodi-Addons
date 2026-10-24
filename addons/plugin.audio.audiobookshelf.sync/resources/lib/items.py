@@ -35,8 +35,26 @@ def status_text(progress, duration=0, downloaded=False, queued=False):
     return " · ".join(parts)
 
 
-def apply_info(li, info):
-    """Fill the music info tag (Kodi 20+ API)."""
+def apply_info(li, info, video=False):
+    """Fill the music info tag (Kodi 20+ API).
+
+    video=True fills a *video* tag instead. Kodi hands items with a video tag to
+    VideoPlayer, the only engine that supports playback speed (see speed.py).
+    """
+    if video:
+        vtag = li.getVideoInfoTag()
+        vtag.setMediaType("video")
+        vtag.setTitle(info.get("title", ""))
+        if info.get("artist"):
+            vtag.setArtists([info["artist"]])
+        if info.get("album"):
+            vtag.setAlbum(info["album"])
+        if info.get("duration"):
+            vtag.setDuration(int(info["duration"]))
+        if info.get("plot"):
+            vtag.setPlot(info["plot"])
+        vtag.setPlaycount(1 if info.get("played") else 0)
+        return
     tag = li.getMusicInfoTag()
     tag.setMediaType(info.get("mediatype", "song"))
     tag.setTitle(info.get("title", ""))

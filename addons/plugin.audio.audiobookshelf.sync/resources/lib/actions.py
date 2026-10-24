@@ -3,7 +3,7 @@
 import xbmc
 import xbmcgui
 
-from . import api, downloads, store, sync, utils
+from . import api, downloads, speed, store, sync, utils
 from .strings import S
 
 
@@ -186,3 +186,23 @@ def test_connection():
         utils.notify(utils.t(S.D_TEST_OK) % message, time_ms=3500)
     else:
         xbmcgui.Dialog().ok(utils.ADDON_NAME, utils.t(S.D_TEST_FAIL) % message)
+
+
+def choose_speed():
+    """Pick a playback speed. During playback it applies live and is remembered
+    for that show/book; otherwise it becomes the default for everything."""
+    if not speed.enabled():
+        return utils.notify(utils.t(S.D_SPEED_DISABLED), error=True)
+    item_id = speed.current_item()
+    current = speed.target_for(item_id) if item_id else speed.default_speed()
+    labels = ["%gx%s" % (p, "   <" if abs(p - current) < 0.01 else "") for p in speed.PRESETS]
+    choice = xbmcgui.Dialog().select(utils.t(S.D_SPEED_PICK), labels)
+    if choice < 0:
+        return
+    value = speed.PRESETS[choice]
+    if item_id:
+        store.set_speed(item_id, value)
+        utils.home_window().setProperty(speed.REQUEST_PROPERTY, "%.2f" % value)  # the service applies it
+    else:
+        utils.set_setting("default_speed", str(int(round(value * 100))))
+        utils.notify(utils.t(S.D_SPEED_DEFAULT_SET) % value, time_ms=2000)

@@ -23,6 +23,8 @@ ICON = os.path.join(ADDON_PATH, "resources", "icon.png")
 BASE_URL = "plugin://" + ADDON_ID + "/"
 HOME_WINDOW_ID = 10000
 CTX_PROPERTY = "abs.sync.ctx"
+PROXY_PROPERTY = "abs.sync.proxy"
+SPEED_PROPERTY = "abs.sync.speed"
 
 try:
     os.makedirs(PROFILE, exist_ok=True)
@@ -103,6 +105,14 @@ def plugin_url(**params):
 
 def home_window():
     return xbmcgui.Window(HOME_WINDOW_ID)
+
+
+def proxy_base():
+    """Base URL of the service's loopback proxy, or '' when unavailable/disabled."""
+    if not s_bool("use_proxy", True):
+        return ""
+    port = home_window().getProperty(PROXY_PROPERTY)
+    return "http://127.0.0.1:%s" % port if port.isdigit() else ""
 
 
 def set_ctx(ctx):

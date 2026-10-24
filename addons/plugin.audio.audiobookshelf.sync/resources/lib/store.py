@@ -49,6 +49,10 @@ CREATE TABLE IF NOT EXISTS sync_queue(
     created_at INTEGER,
     attempts INTEGER DEFAULT 0
 );
+CREATE TABLE IF NOT EXISTS speed(
+    item_id TEXT PRIMARY KEY,
+    speed REAL
+);
 CREATE TABLE IF NOT EXISTS auto_dl(
     item_id TEXT PRIMARY KEY,
     title TEXT,
@@ -234,3 +238,15 @@ def local_progress_map():
         out[r["key"]] = {"currentTime": r["position"], "duration": r["duration"],
                          "isFinished": bool(r["is_finished"]), "lastUpdate": r["updated_at"]}
     return out
+
+
+# --------------------------------------------------------------------------
+# Remembered playback speed per show / book
+# --------------------------------------------------------------------------
+def get_speed(item_id):
+    row = _run("SELECT speed FROM speed WHERE item_id=?", (item_id,), fetch="one")
+    return row["speed"] if row else None
+
+
+def set_speed(item_id, value):
+    _run("INSERT OR REPLACE INTO speed(item_id,speed) VALUES(?,?)", (item_id, float(value)))

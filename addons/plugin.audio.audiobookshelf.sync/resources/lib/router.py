@@ -33,6 +33,9 @@ def _browse(handle, p):
     action = p.get("action", "root")
     if action in ("downloads",):
         return views.downloads(ctx, p.get("group"))
+    if action == "speed":  # needs no server; opened from the root menu
+        actions.choose_speed()
+        return xbmcplugin.endOfDirectory(handle, succeeded=False)
     if action == "root":
         return views.root(ctx)
     if _need_config(handle, ctx.client):
@@ -85,12 +88,14 @@ def _do(p):
         return actions.sync_now()
     if action == "test_connection":
         return actions.test_connection()
+    if action == "speed":
+        return actions.choose_speed()
     if action == "open_settings":
         return utils.open_settings()
     raise ValueError("unknown action %r" % action)
 
 
-RUN_ACTIONS = {"mark", "dl_add", "dl_remove", "dl_remove_group", "test_connection", "open_settings"}
+RUN_ACTIONS = {"mark", "dl_add", "dl_remove", "dl_remove_group", "test_connection", "open_settings", "speed"}
 
 
 def run(argv=None):

@@ -82,7 +82,7 @@ class FakeListItem:
 
     def __init__(self, label="", label2="", path="", offscreen=False):
         self.label, self.label2, self.path = label, label2, path
-        self.props, self.art, self.menu, self.tag = {}, {}, [], FakeTag()
+        self.props, self.art, self.menu, self.tag, self.vtag = {}, {}, [], FakeTag(), FakeTag()
 
     def getLabel(self):
         return self.label
@@ -113,6 +113,9 @@ class FakeListItem:
 
     def getMusicInfoTag(self):
         return self.tag
+
+    def getVideoInfoTag(self):
+        return self.vtag
 
 
 import xbmcgui  # noqa: E402

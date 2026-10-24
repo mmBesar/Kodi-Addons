@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.audio.audiobookshelf.sync"
        name="Audiobookshelf Sync"
-       version="1.0.0"
+       version="1.1.0"
        provider-name="mmbesar">
   <requires>
     <import addon="xbmc.python" version="3.0.1"/>
@@ -32,6 +32,12 @@
       <icon>resources/icon.png</icon>
       <fanart>resources/fanart.jpg</fanart>
     </assets>
-    <news>1.0.0 - First release.</news>
+    <news>1.1.0
+- Fix: covers and audio now load over HTTPS. Kodi's own network stack is bypassed through a small loopback proxy inside the add-on (covers are cached on disk).
+- New: playback speed control (0.8x to 2.0x), remembered per show or book. Opt-in in settings; needs Kodi's video player engine. Speeds above 1.5x need maxtempo raised in advancedsettings.xml (see README).
+- New: Playback speed entry in the main menu.
+
+1.0.0
+- First release.</news>
   </extension>
 </addon>

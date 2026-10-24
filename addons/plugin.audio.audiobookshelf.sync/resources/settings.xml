@@ -149,6 +149,28 @@
           </control>
         </setting>
       </group>
+      <group id="3" label="30028">
+        <setting id="speed_engine" type="boolean" label="30070" help="">
+          <level>0</level>
+          <default>false</default>
+          <control type="toggle"/>
+        </setting>
+        <setting id="default_speed" type="integer" label="30071" help="">
+          <level>0</level>
+          <default>100</default>
+          <constraints>
+            <minimum>50</minimum>
+            <step>5</step>
+            <maximum>200</maximum>
+          </constraints>
+          <dependencies>
+            <dependency type="enable" setting="speed_engine">true</dependency>
+          </dependencies>
+          <control type="slider" format="percentage">
+            <popup>false</popup>
+          </control>
+        </setting>
+      </group>
     </category>
     <category id="downloads" label="30013" help="">
       <group id="1" label="30025">
@@ -204,7 +226,14 @@
       </group>
     </category>
     <category id="advanced" label="30014" help="">
-      <group id="1" label="30027">
+      <group id="1" label="30029">
+        <setting id="use_proxy" type="boolean" label="30072" help="">
+          <level>0</level>
+          <default>true</default>
+          <control type="toggle"/>
+        </setting>
+      </group>
+      <group id="2" label="30027">
         <setting id="debug_logging" type="boolean" label="30065" help="">
           <level>0</level>
           <default>false</default>

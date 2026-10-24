@@ -360,10 +360,18 @@ class ABSClient:
         self.post("/api/session/local", payload, timeout=SYNC_TIMEOUT)
 
     def track_url(self, session_id, index):
-        return "%s/public/session/%s/track/%s" % (self.base, quote(session_id, safe=""), index)
+        """Stream URL for Kodi: via the loopback proxy when it runs, else direct."""
+        sid = quote(session_id, safe="")
+        proxy = utils.proxy_base()
+        if proxy:
+            return "%s/t/%s/%s" % (proxy, sid, index)
+        return "%s/public/session/%s/track/%s" % (self.base, sid, index)
 
     # --------------------------------------------------------------- artwork
-    def cover_url(self, item_id, width=600):
+    def cover_url(self, item_id, width=600, direct=False):
+        proxy = "" if direct else utils.proxy_base()
+        if proxy:
+            return "%s/c/%s?w=%d" % (proxy, item_id, width)
         return "%s/api/items/%s/cover?width=%d&format=jpeg" % (self.base, item_id, width)
 
     # --------------------------------------------------------------- podcasts

@@ -17,7 +17,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 
-from . import api, items, store, sync, utils
+from . import api, items, speed, store, sync, utils
 from .strings import S
 
 
@@ -137,7 +137,7 @@ def _listitem(plan, track, start_in_track=None):
     items.apply_info(li, {
         "title": plan["title"], "artist": plan["author"], "album": plan["album"],
         "duration": plan["duration"] if len(plan["tracks"]) == 1 else track["duration"],
-    })
+    }, video=speed.enabled())
     cover = plan.get("cover")
     li.setArt({"thumb": cover, "icon": cover, "fanart": utils.FANART} if cover else {"fanart": utils.FANART})
     if start_in_track and start_in_track > 1:
@@ -193,7 +193,7 @@ def resolve(handle, item_id, episode_id=None, start=None):
         xbmcplugin.setResolvedUrl(handle, True, _listitem(plan, tracks[0], start_in_track))
         return
 
-    playlist = xbmc.PlayList(xbmc.PLAYLIST_MUSIC)
+    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO if speed.enabled() else xbmc.PLAYLIST_MUSIC)
     playlist.clear()
     for i, track in enumerate(tracks):
         playlist.add(track["url"], _listitem(plan, track, start_in_track if i == start_track else None))

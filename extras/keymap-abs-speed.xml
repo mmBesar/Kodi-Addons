@@ -1,0 +1,15 @@
+<!--
+  Optional: speed picker on a key while playing.
+  Copy to  <Kodi userdata>/keymaps/abs-speed.xml  and restart Kodi.
+  s            -> Audiobookshelf Sync speed picker (0.8x ... 2.0x)
+  [ and ]      -> Kodi's built-in tempo down / up (0.1x steps)
+-->
+<keymap>
+  <FullscreenVideo>
+    <keyboard>
+      <s>RunPlugin(plugin://plugin.audio.audiobookshelf.sync/?action=speed)</s>
+      <opensquarebracket>PlayerControl(tempodown)</opensquarebracket>
+      <closesquarebracket>PlayerControl(tempoup)</closesquarebracket>
+    </keyboard>
+  </FullscreenVideo>
+</keymap>

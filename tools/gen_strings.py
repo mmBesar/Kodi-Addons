@@ -26,6 +26,8 @@ STRINGS = [
     ("GRP_OFFLINE", 30025, "Offline files"),
     ("GRP_AUTO", 30026, "Auto-download"),
     ("GRP_DIAG", 30027, "Diagnostics"),
+    ("GRP_SPEED", 30028, "Playback speed"),
+    ("GRP_NETWORK", 30029, "Network"),
     # --- settings: labels ----------------------------------------------------
     ("SET_SERVER_URL", 30030, "Server address (for example https://abs.example.com)"),
     ("SET_AUTH_METHOD", 30032, "Sign-in method"),
@@ -60,6 +62,9 @@ STRINGS = [
     ("SET_AUTO_KEEP", 30064, "Default number of unplayed episodes to keep offline"),
     ("SET_DEBUG", 30065, "Verbose logging"),
     ("SET_SYNC_NOW", 30066, "Sync pending listening now"),
+    ("SET_SPEED_ENGINE", 30070, "Enable playback speed control (uses Kodi's video player engine)"),
+    ("SET_DEFAULT_SPEED", 30071, "Default playback speed"),
+    ("SET_USE_PROXY", 30072, "Load streams and artwork through the add-on's local proxy (fixes HTTPS problems)"),
     # --- menus -----------------------------------------------------------------
     ("M_CONTINUE", 30100, "Continue listening"),
     ("M_LATEST", 30101, "Latest episodes"),
@@ -74,6 +79,7 @@ STRINGS = [
     ("M_CHAPTERS", 30110, "Chapters"),
     ("M_PODCAST_OPTIONS", 30180, "Podcast options..."),
     ("M_PLAY_FROM_START", 30181, "Play from the beginning"),
+    ("M_SPEED", 30182, "Playback speed"),
     # --- context menu ----------------------------------------------------------
     ("C_PLAY", 30111, "Play"),
     ("C_MARK_PLAYED", 30112, "Mark as played"),
@@ -134,6 +140,11 @@ STRINGS = [
     ("D_PLAYING_LOCAL", 30177, "Playing the downloaded copy"),
     ("D_SEARCH_PODCASTS", 30178, "Search for a podcast to add"),
     ("D_MARKED", 30179, "Updated"),
+    ("D_SPEED_PICK", 30183, "Choose playback speed"),
+    ("D_SPEED_DISABLED", 30184, "Turn on playback speed control in the add-on settings first"),
+    ("D_SPEED_LIMIT", 30185, "Kodi capped the speed at %.2fx. Raise maxtempo, see the add-on README"),
+    ("D_SPEED_SET", 30186, "Playback speed: %.2fx"),
+    ("D_SPEED_DEFAULT_SET", 30187, "Default speed set to %.2fx"),
 ]
 
 HEADER = '''# Kodi Media Center language file

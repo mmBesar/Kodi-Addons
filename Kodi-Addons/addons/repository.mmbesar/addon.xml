@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.mmbesar"
+       name="mmbesar Kodi Repository"
+       version="1.0.0"
+       provider-name="mmbesar">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0"/>
+  </requires>
+  <extension point="xbmc.addon.repository" name="mmbesar Kodi Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/mmbesar/Kodi-Addons/main/repo/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en_GB">mmbesar's Kodi add-ons</summary>
+    <description lang="en_GB">Personal repository for add-ons by mmbesar, hosted on GitHub.</description>
+    <license>GPL-3.0-or-later</license>
+    <source>https://github.com/mmbesar/Kodi-Addons</source>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>

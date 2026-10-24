@@ -19,7 +19,8 @@ import time
 
 import xbmc
 
-from . import api, downloads, store, sync, utils
+from . import api, downloads, proxy, speed, store, sync, utils
+from .strings import S
 
 PENDING_FINISH_GRACE = 5.0  # seconds to wait for the next playlist entry
 
@@ -52,6 +53,9 @@ class ABSPlayer(xbmc.Player):
         self.last_tick = _now()
         self.last_sync = _now()
         self.pending_finish = None
+        self.speed_target = None
+        self.speed_tries = 0
+        self.speed_announce = False
 
     # --------------------------------------------------------------- helpers
     def _match(self, playing):
@@ -83,6 +87,7 @@ class ABSPlayer(xbmc.Player):
                     self.pending_finish = None
                     self.paused = False
                     self.last_tick = _now()
+                    self._arm_speed()
                     return
                 self._finish(ended=False)  # user moved on to something else
             ctx = utils.pop_ctx()
@@ -97,6 +102,8 @@ class ABSPlayer(xbmc.Player):
             self.track_idx = idx
             self.last_pos = float(ctx.get("start_position", 0))
             self.client = api.ABSClient()
+            utils.home_window().setProperty(speed.NOW_PROPERTY, ctx["item_id"])
+            self._arm_speed()
             utils.debug("tracking %s (%s) from %.0fs" % (ctx["item_id"], ctx["mode"], self.last_pos))
             start = ctx.get("start_in_track", 0)
             if idx == ctx.get("start_track") and start > 1:
@@ -157,6 +164,9 @@ class ABSPlayer(xbmc.Player):
             self.last_tick = now
             if self.pending_finish and now - self.pending_finish >= PENDING_FINISH_GRACE:
                 return self._finish(ended=False)
+            self._poll_speed_request()
+            if self.speed_target is not None and not self.paused and self.isPlaying():
+                self._apply_speed()
             if self.paused or not self.isPlaying():
                 return
             self.unsynced += dt
@@ -164,6 +174,40 @@ class ABSPlayer(xbmc.Player):
             self._update_position()
             if now - self.last_sync >= max(10, utils.s_int("sync_interval", 30)):
                 self._sync()
+
+    # ----------------------------------------------------------------- speed
+    def _arm_speed(self):
+        """Queue the remembered/default speed; applied by tick() once Kodi allows it."""
+        self.speed_target = None
+        if speed.enabled():
+            self.speed_target = speed.target_for(self.ctx["item_id"])
+            self.speed_tries = 0
+            self.speed_announce = False
+
+    def _poll_speed_request(self):
+        raw = utils.home_window().getProperty(speed.REQUEST_PROPERTY)
+        if raw:
+            utils.home_window().clearProperty(speed.REQUEST_PROPERTY)
+            try:
+                self.speed_target = float(raw)
+                self.speed_tries = 0
+                self.speed_announce = True
+            except ValueError:
+                pass
+
+    def _apply_speed(self):
+        self.speed_tries += 1
+        target = self.speed_target
+        got = speed.apply(target)
+        if got is not None and abs(got - target) <= 0.02:
+            self.speed_target = None
+            if self.speed_announce:
+                utils.notify(utils.t(S.D_SPEED_SET) % got, time_ms=1500)
+        elif got is not None and self.speed_tries >= 3:
+            self.speed_target = None  # Kodi accepted the call but holds another value: capped
+            utils.notify(utils.t(S.D_SPEED_LIMIT) % got, error=True, time_ms=6000)
+        elif self.speed_tries >= 20:
+            self.speed_target = None  # engine never became ready (e.g. live stream)
 
     def _local_payload(self, position):
         return sync.build_local_session(self.ctx, position, self.total, self.ctx["started_at"])
@@ -194,6 +238,8 @@ class ABSPlayer(xbmc.Player):
             return
         self.ctx = None
         self.pending_finish = None
+        self.speed_target = None
+        utils.home_window().clearProperty(speed.NOW_PROPERTY)
         if ended and ctx.get("duration"):
             position = ctx["duration"]
         else:
@@ -246,6 +292,7 @@ class Service(xbmc.Monitor):
         super().__init__()
         self.player = ABSPlayer()
         self.autosync_event = threading.Event()
+        self.proxy = None
         self._busy = {"flush": False, "auto": False}
 
     def onSettingsChanged(self):
@@ -299,6 +346,7 @@ class Service(xbmc.Monitor):
 
     def run(self):
         utils.log("service started (%s)" % utils.ADDON_VERSION)
+        self.proxy = proxy.start()
         threading.Thread(target=self.download_loop, daemon=True).start()
         started = _now()
         last_flush = last_auto = 0.0
@@ -320,4 +368,5 @@ class Service(xbmc.Monitor):
             if self.waitForAbort(1):
                 break
         self.player.shutdown()
+        proxy.stop(self.proxy)
         utils.log("service stopped")

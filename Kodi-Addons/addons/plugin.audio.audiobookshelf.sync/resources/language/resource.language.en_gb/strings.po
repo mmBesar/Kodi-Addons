@@ -1,0 +1,525 @@
+# Kodi Media Center language file
+# Addon Name: Audiobookshelf Sync
+# Addon id: plugin.audio.audiobookshelf.sync
+# Addon Provider: mmbesar
+msgid ""
+msgstr ""
+"Project-Id-Version: plugin.audio.audiobookshelf.sync\n"
+"Report-Msgid-Bugs-To: https://github.com/mmbesar/Kodi-Addons/issues\n"
+"POT-Creation-Date: 2026-10-22 00:00+0000\n"
+"Last-Translator: mmbesar\n"
+"Language-Team: English (UK)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_GB\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30010"
+msgid "Connection"
+msgstr ""
+
+msgctxt "#30011"
+msgid "Library"
+msgstr ""
+
+msgctxt "#30012"
+msgid "Playback and sync"
+msgstr ""
+
+msgctxt "#30013"
+msgid "Downloads"
+msgstr ""
+
+msgctxt "#30014"
+msgid "Advanced"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Server"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Account"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Browsing"
+msgstr ""
+
+msgctxt "#30023"
+msgid "Resume"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Progress sync"
+msgstr ""
+
+msgctxt "#30025"
+msgid "Offline files"
+msgstr ""
+
+msgctxt "#30026"
+msgid "Auto-download"
+msgstr ""
+
+msgctxt "#30027"
+msgid "Diagnostics"
+msgstr ""
+
+msgctxt "#30028"
+msgid "Playback speed"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Network"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Server address (for example https://abs.example.com)"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Sign-in method"
+msgstr ""
+
+msgctxt "#30033"
+msgid "API key (recommended)"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Username and password"
+msgstr ""
+
+msgctxt "#30035"
+msgid "API key"
+msgstr ""
+
+msgctxt "#30037"
+msgid "Username"
+msgstr ""
+
+msgctxt "#30038"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30039"
+msgid "Verify TLS certificate"
+msgstr ""
+
+msgctxt "#30041"
+msgid "Test connection"
+msgstr ""
+
+msgctxt "#30042"
+msgid "Items per page"
+msgstr ""
+
+msgctxt "#30043"
+msgid "Show newest episodes first"
+msgstr ""
+
+msgctxt "#30044"
+msgid "Hide played episodes"
+msgstr ""
+
+msgctxt "#30045"
+msgid "When an item has progress"
+msgstr ""
+
+msgctxt "#30046"
+msgid "Resume automatically"
+msgstr ""
+
+msgctxt "#30047"
+msgid "Ask me each time"
+msgstr ""
+
+msgctxt "#30048"
+msgid "Rewind on resume (seconds)"
+msgstr ""
+
+msgctxt "#30049"
+msgid "Send progress to the server"
+msgstr ""
+
+msgctxt "#30050"
+msgid "Every 15 seconds"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Every 30 seconds"
+msgstr ""
+
+msgctxt "#30052"
+msgid "Every minute"
+msgstr ""
+
+msgctxt "#30053"
+msgid "Every 2 minutes"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Prefer the downloaded copy when available"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Download folder (empty = addon data folder)"
+msgstr ""
+
+msgctxt "#30057"
+msgid "Delete downloaded episodes once played"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Check subscribed podcasts"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Never"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Every 30 minutes"
+msgstr ""
+
+msgctxt "#30061"
+msgid "Every hour"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Every 3 hours"
+msgstr ""
+
+msgctxt "#30063"
+msgid "Every 6 hours"
+msgstr ""
+
+msgctxt "#30064"
+msgid "Default number of unplayed episodes to keep offline"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Verbose logging"
+msgstr ""
+
+msgctxt "#30066"
+msgid "Sync pending listening now"
+msgstr ""
+
+msgctxt "#30070"
+msgid "Enable playback speed control (uses Kodi's video player engine)"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Default playback speed"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Load streams and artwork through the add-on's local proxy (fixes HTTPS problems)"
+msgstr ""
+
+msgctxt "#30100"
+msgid "Continue listening"
+msgstr ""
+
+msgctxt "#30101"
+msgid "Latest episodes"
+msgstr ""
+
+msgctxt "#30102"
+msgid "Podcasts"
+msgstr ""
+
+msgctxt "#30103"
+msgid "Audiobooks"
+msgstr ""
+
+msgctxt "#30104"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30105"
+msgid "Downloads"
+msgstr ""
+
+msgctxt "#30106"
+msgid "Add a podcast to the server"
+msgstr ""
+
+msgctxt "#30107"
+msgid "Sync now"
+msgstr ""
+
+msgctxt "#30108"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Next page"
+msgstr ""
+
+msgctxt "#30110"
+msgid "Chapters"
+msgstr ""
+
+msgctxt "#30180"
+msgid "Podcast options..."
+msgstr ""
+
+msgctxt "#30181"
+msgid "Play from the beginning"
+msgstr ""
+
+msgctxt "#30182"
+msgid "Playback speed"
+msgstr ""
+
+msgctxt "#30111"
+msgid "Play"
+msgstr ""
+
+msgctxt "#30112"
+msgid "Mark as played"
+msgstr ""
+
+msgctxt "#30113"
+msgid "Mark as not played"
+msgstr ""
+
+msgctxt "#30114"
+msgid "Download for offline"
+msgstr ""
+
+msgctxt "#30115"
+msgid "Remove download"
+msgstr ""
+
+msgctxt "#30116"
+msgid "Go to podcast"
+msgstr ""
+
+msgctxt "#30117"
+msgid "Auto-download new episodes"
+msgstr ""
+
+msgctxt "#30118"
+msgid "Stop auto-downloading"
+msgstr ""
+
+msgctxt "#30119"
+msgid "Find episodes not on the server yet"
+msgstr ""
+
+msgctxt "#30120"
+msgid "Ask the server to check for new episodes"
+msgstr ""
+
+msgctxt "#30121"
+msgid "Remove all downloads of this podcast"
+msgstr ""
+
+msgctxt "#30122"
+msgid "Download all unplayed episodes"
+msgstr ""
+
+msgctxt "#30130"
+msgid "Played"
+msgstr ""
+
+msgctxt "#30131"
+msgid "%s left"
+msgstr ""
+
+msgctxt "#30132"
+msgid "Downloaded"
+msgstr ""
+
+msgctxt "#30133"
+msgid "Queued"
+msgstr ""
+
+msgctxt "#30134"
+msgid "New"
+msgstr ""
+
+msgctxt "#30140"
+msgid "Search your libraries"
+msgstr ""
+
+msgctxt "#30141"
+msgid "No results"
+msgstr ""
+
+msgctxt "#30142"
+msgid "Nothing here yet"
+msgstr ""
+
+msgctxt "#30143"
+msgid "Resume from %s"
+msgstr ""
+
+msgctxt "#30144"
+msgid "Start from the beginning"
+msgstr ""
+
+msgctxt "#30145"
+msgid "Cannot reach the server"
+msgstr ""
+
+msgctxt "#30146"
+msgid "Cannot reach the server. Showing downloads only."
+msgstr ""
+
+msgctxt "#30147"
+msgid "Sign-in failed. Check the settings."
+msgstr ""
+
+msgctxt "#30148"
+msgid "This action needs an admin account on the server."
+msgstr ""
+
+msgctxt "#30149"
+msgid "Enter your server address and credentials first."
+msgstr ""
+
+msgctxt "#30150"
+msgid "Connected as %s"
+msgstr ""
+
+msgctxt "#30151"
+msgid "Connection failed: %s"
+msgstr ""
+
+msgctxt "#30152"
+msgid "Downloading: %s"
+msgstr ""
+
+msgctxt "#30153"
+msgid "Downloaded: %s"
+msgstr ""
+
+msgctxt "#30154"
+msgid "Download failed: %s"
+msgstr ""
+
+msgctxt "#30155"
+msgid "Not enough free disk space"
+msgstr ""
+
+msgctxt "#30156"
+msgid "Queued %d download(s)"
+msgstr ""
+
+msgctxt "#30157"
+msgid "The download folder must be a local path"
+msgstr ""
+
+msgctxt "#30158"
+msgid "Download removed"
+msgstr ""
+
+msgctxt "#30159"
+msgid "Remove this download from the device?"
+msgstr ""
+
+msgctxt "#30160"
+msgid "Remove every downloaded item of this podcast?"
+msgstr ""
+
+msgctxt "#30161"
+msgid "Auto-download on: keeping %d unplayed episodes"
+msgstr ""
+
+msgctxt "#30162"
+msgid "Auto-download off"
+msgstr ""
+
+msgctxt "#30163"
+msgid "How many unplayed episodes should be kept offline?"
+msgstr ""
+
+msgctxt "#30164"
+msgid "Synced %d listening session(s)"
+msgstr ""
+
+msgctxt "#30165"
+msgid "Nothing waiting to sync"
+msgstr ""
+
+msgctxt "#30166"
+msgid "%d session(s) will sync when the server is reachable"
+msgstr ""
+
+msgctxt "#30167"
+msgid "Podcast added to the server"
+msgstr ""
+
+msgctxt "#30168"
+msgid "Choose a podcast to add"
+msgstr ""
+
+msgctxt "#30169"
+msgid "Choose the podcast library"
+msgstr ""
+
+msgctxt "#30170"
+msgid "Choose episodes to fetch on the server"
+msgstr ""
+
+msgctxt "#30171"
+msgid "The server is downloading %d episode(s)"
+msgstr ""
+
+msgctxt "#30172"
+msgid "No new episodes"
+msgstr ""
+
+msgctxt "#30173"
+msgid "Server found %d new episode(s)"
+msgstr ""
+
+msgctxt "#30174"
+msgid "This item is not available"
+msgstr ""
+
+msgctxt "#30175"
+msgid "No podcast library found on the server"
+msgstr ""
+
+msgctxt "#30176"
+msgid "That podcast is already on the server"
+msgstr ""
+
+msgctxt "#30177"
+msgid "Playing the downloaded copy"
+msgstr ""
+
+msgctxt "#30178"
+msgid "Search for a podcast to add"
+msgstr ""
+
+msgctxt "#30179"
+msgid "Updated"
+msgstr ""
+
+msgctxt "#30183"
+msgid "Choose playback speed"
+msgstr ""
+
+msgctxt "#30184"
+msgid "Turn on playback speed control in the add-on settings first"
+msgstr ""
+
+msgctxt "#30185"
+msgid "Kodi capped the speed at %.2fx. Raise maxtempo, see the add-on README"
+msgstr ""
+
+msgctxt "#30186"
+msgid "Playback speed: %.2fx"
+msgstr ""
+
+msgctxt "#30187"
+msgid "Default speed set to %.2fx"
+msgstr ""
+

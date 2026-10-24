@@ -36,6 +36,7 @@ class State:
         self.syncs = []              # (session id, body)
         self.closes = []
         self.local_sessions = []
+        self.public_auth = []
         self.logins = 0
         self.refreshes = 0
         self.access_ttl = 3600
@@ -86,7 +87,8 @@ class Handler(BaseHTTPRequestHandler):
         for k, v in (headers or {}).items():
             self.send_header(k, v)
         self.end_headers()
-        self.wfile.write(data)
+        if self.command != "HEAD":
+            self.wfile.write(data)
 
     def _authed(self):
         auth = self.headers.get("Authorization", "")
@@ -99,13 +101,15 @@ class Handler(BaseHTTPRequestHandler):
     def _file(self):
         rng = self.headers.get("Range")
         if rng:
-            start = int(re.match(r"bytes=(\d+)-", rng).group(1))
+            m = re.match(r"bytes=(\d+)-(\d*)", rng)
+            start = int(m.group(1))
+            end = int(m.group(2)) if m.group(2) else len(AUDIO) - 1
             if start >= len(AUDIO):
                 return self._send(416, raw=b"")
-            chunk = AUDIO[start:]
-            return self._send(206, raw=chunk, headers={
-                "Content-Range": "bytes %d-%d/%d" % (start, len(AUDIO) - 1, len(AUDIO))})
-        self._send(200, raw=AUDIO, headers={"Accept-Ranges": "bytes"})
+            end = min(end, len(AUDIO) - 1)
+            return self._send(206, raw=AUDIO[start:end + 1], headers={
+                "Content-Range": "bytes %d-%d/%d" % (start, end, len(AUDIO)), "Accept-Ranges": "bytes"})
+        self._send(200, raw=AUDIO, headers={"Accept-Ranges": "bytes", "Content-Type": "audio/mpeg"})
 
     # ---- routing
     def _route(self, method):
@@ -146,6 +150,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {"user": {"accessToken": access, "refreshToken": new_refresh}})
         m = re.match(r"^/public/session/([^/]+)/track/(\d+)$", path)
         if m:
+            s.public_auth.append(self.headers.get("Authorization"))
             return self._file() if m.group(1) in s.sessions else self._send(404, raw=b"")
         if re.match(r"^/api/items/[^/]+/cover$", path):
             return self._send(200, raw=b"\xff\xd8jpeg", headers={"Content-Type": "image/jpeg"})
@@ -250,6 +255,9 @@ class Handler(BaseHTTPRequestHandler):
         self._send(404, raw=b"")
 
     def do_GET(self):
+        self._route("GET")
+
+    def do_HEAD(self):  # Express answers HEAD for every GET route
         self._route("GET")
 
     def do_POST(self):

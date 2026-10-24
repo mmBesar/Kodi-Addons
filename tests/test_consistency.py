@@ -69,3 +69,10 @@ def test_repo_directory_is_up_to_date():
     r = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "build_repo.py"), "--check"],
                        capture_output=True, text=True)
     assert r.returncode == 0, r.stdout + r.stderr
+
+
+def test_settings_xml_matches_its_generator():
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import gen_settings
+    current = open(os.path.join(ADDON_DIR, "resources", "settings.xml"), encoding="utf-8").read()
+    assert current == gen_settings.XML, "settings.xml is stale: run python3 tools/gen_settings.py"
