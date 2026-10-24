@@ -1,0 +1,40 @@
+name: build-repo
+
+on:
+  push:
+    branches: [main]
+    paths: ["addons/**", "tools/**", "tests/**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: pip install Kodistubs requests pytest pyflakes Pillow
+      - name: Lint
+        run: python -m pyflakes addons tools
+      - name: Regenerate strings and repository
+        run: |
+          python tools/gen_strings.py
+          python tools/build_repo.py
+      - name: Tests
+        run: python -m pytest tests -q
+      - name: Commit regenerated files (push to main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          if [ -n "$(git status --porcelain repo addons)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add repo addons
+            git commit -m "chore: rebuild repository [skip ci]"
+            git push
+          fi
